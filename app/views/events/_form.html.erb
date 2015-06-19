@@ -1,9 +1,14 @@
-<%= form_for(@event) do |f| %>
- <%= f.text_field :event_title%>
-<%= f.text_field :event_start_date%>
+<%= form_for(@event)  do |f| %>
+ <%= f.text_field :event_title, validates: true%></br>
+<%= f.text_field :event_start_date%></br>
 <%= f.text_field :event_color%>
 
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $(".new_event").enableClienSideValidation();
+
+</script>
