@@ -1,0 +1,9 @@
+<%= form_for(@event) do |f| %>
+ <%= f.text_field :event_title%>
+<%= f.text_field :event_start_date%>
+<%= f.text_field :event_color%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

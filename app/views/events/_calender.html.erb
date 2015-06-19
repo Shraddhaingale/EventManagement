@@ -1,0 +1,21 @@
+<div id='calendar'></div>
+
+
+
+<script>
+
+
+$('#calendar').fullCalendar({
+
+    events: [
+    	<% @events.each do |h| %>
+        {
+            title  : '<%= "#{h.event_title}" %>',
+            start  : '<%= "#{h.event_start_date.strftime("%Y-%m-%d")}" %>',
+            backgroundColor : '<%= "#{h.event_color}" %>'
+        },
+       <% end %>
+    ]
+});	
+
+</script>
