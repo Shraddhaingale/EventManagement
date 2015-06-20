@@ -1,6 +1,6 @@
 <%= form_for @event,:validate => true, :remote => true do |f| %>
 <%= f.text_field :event_title%></br>
-<%= f.text_field :event_start_date ,:value =>@event.event_start_date.strftime("%Y-%m-%d") if !@event.event_start_date.nil?%></br>
+<%= f.text_field :event_start_date ,:value =>@event.event_start_date %></br>
 <%= f.text_field :event_color%>
 
   <div class="actions">
