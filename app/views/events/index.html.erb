@@ -3,11 +3,13 @@
 <h1>Listing Events</h1>
 
 <h3> Test </h3>
+<div id ="create_event">
+<%= render partial: "form" %>
+</div>
 
-<div id="render_here"></div>
-
-<%= render partial: "calender" %>
-
+<div id ="show_event">
+<!-- < %= render :show %> -->
+</div>
 
 <table>
   <thead>
@@ -17,11 +19,12 @@
   </thead>
 
   <tbody>
+
     <% @events.each do |event| %>
       <tr>
         <td> <%= event.event_title %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Show', event ,:remote => true ,:class => "show_event"%></td>
+        <td><%= link_to 'Edit', edit_event_path(event) ,:remote => true ,:class => "edit_event" %><td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -29,13 +32,42 @@
 </table>
 
 <br>
+<div id="render_here">
 
-<%= link_to 'New Event', new_event_path %>
+<%= render partial: "calender" %>
+
+</div>
+<!-- < %= link_to 'New Event', new_event_path %> -->
+
 
 
 <script>
    
-   
+   $('#new_event').on('ajax:success', function(event, data) {
+    
+    $("#render_here").html(data);
 
+    //$("new_form").enableClientSideValidations();
+  }).on('ajax:error', function(data, xhr, status, error) {
+    alert(JSON.stringify(status));
+  });
+   
+   $('.edit_event').on('ajax:success', function(event, data) {
+    
+    $("#create_event").html(data);
+
+    //$("new_form").enableClientSideValidations();
+  }).on('ajax:error', function(data, xhr, status, error) {
+    alert(JSON.stringify(status));
+  }); 
+
+   $('.show_event').on('ajax:success', function(event, data) {
+    
+    $("#show_event").html(data);
+
+    //$("new_form").enableClientSideValidations();
+  }).on('ajax:error', function(data, xhr, status, error) {
+    alert(JSON.stringify(status));
+  }); 
 </script>
 

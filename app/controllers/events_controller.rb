@@ -11,32 +11,38 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+     @event = Event.find(params[:id])
+     render :show
   end
 
   # GET /events/new
   def new
     
     @event = Event.new
+
   end
 
   # GET /events/1/edit
   def edit
+    render :edit
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(event_params.permit!)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    @event.save
+    @events = Event.all
+    # respond_to do |format|
+    #   if @event.save
+    #     format.html { redirect_to @event, notice: 'Event was successfully created.' }
+    #     format.json { render :show, status: :created, location: @event }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @event.errors, status: :unprocessable_entity }
+    #   end
+    # end
+      render :partial=>"calender"
   end
 
   # PATCH/PUT /events/1

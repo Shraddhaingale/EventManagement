@@ -1,6 +1,6 @@
-<%= form_for(@event)  do |f| %>
- <%= f.text_field :event_title, validates: true%></br>
-<%= f.text_field :event_start_date%></br>
+<%= form_for @event,:validate => true, :remote => true do |f| %>
+<%= f.text_field :event_title%></br>
+<%= f.text_field :event_start_date ,:value =>@event.event_start_date.strftime("%Y-%m-%d") if !@event.event_start_date.nil?%></br>
 <%= f.text_field :event_color%>
 
   <div class="actions">
@@ -8,7 +8,3 @@
   </div>
 <% end %>
 
-<script>
-  $(".new_event").enableClienSideValidation();
-
-</script>

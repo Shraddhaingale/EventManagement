@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<p>
+	<h3>Tittle:</h3><%= @event.event_title%></br>
+	<h3>Start Date:</h3><%= @event.event_start_date.strftime("%Y-%m-%d")%></br>
+</p>
+<!-- < %= link_to 'Edit', edit_event_path(@event) %> |
+< %= link_to 'Back', events_path %> -->
